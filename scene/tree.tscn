@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://csbgpehwnehx5"]
+
+[ext_resource type="Texture2D" uid="uid://dff81gl0v6bcg" path="res://World/TX Village Props.png" id="1_brfkd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnvrw"]
+atlas = ExtResource("1_brfkd")
+region = Rect2(832, 447, 153, 162)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvmkm"]
+radius = 6.0
+height = 146.0
+
+[node name="Tree" type="StaticBody2D" unique_id=1630465579]
+collision_layer = 2
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1953950014]
+texture = SubResource("AtlasTexture_nnvrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1632452739]
+position = Vector2(4, 8)
+shape = SubResource("CapsuleShape2D_gvmkm")

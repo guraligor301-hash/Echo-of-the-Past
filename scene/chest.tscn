@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b00fe2wlhqusf"]
+
+[ext_resource type="Texture2D" uid="uid://cfoqb40uavsvl" path="res://Free_FantasyChestsPixelArtAnimation/free_all_sheet-list.png" id="1_twpm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e0a3"]
+size = Vector2(32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uwsg"]
+atlas = ExtResource("1_twpm2")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp1or"]
+atlas = ExtResource("1_twpm2")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trlyu"]
+atlas = ExtResource("1_twpm2")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7mpe"]
+atlas = ExtResource("1_twpm2")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv3sb"]
+atlas = ExtResource("1_twpm2")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_day8l"]
+atlas = ExtResource("1_twpm2")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twpm2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uwsg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp1or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trlyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7mpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv3sb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_day8l")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="cheast" type="CharacterBody2D" unique_id=574024861]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=979573154]
+position = Vector2(9, 9.5)
+shape = SubResource("RectangleShape2D_0e0a3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1207524575]
+position = Vector2(8, 4)
+sprite_frames = SubResource("SpriteFrames_twpm2")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.10367367
