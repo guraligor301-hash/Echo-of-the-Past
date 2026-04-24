@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cvjmt8poua61a"]
+
+[ext_resource type="Script" uid="uid://hcvduxckjo7c" path="res://Collectibles/key.gd" id="1_2doog"]
+[ext_resource type="Texture2D" uid="uid://lhfrqnidhop5" path="res://textures/ChatGPT_Image_23_квіт._2026_р.__22_57_05-removebg-preview.png" id="1_g3pn5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hedmi"]
+size = Vector2(7, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2doog"]
+atlas = ExtResource("1_g3pn5")
+region = Rect2(0, 96, 135, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pid68"]
+atlas = ExtResource("1_g3pn5")
+region = Rect2(131, 106, 131, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2llys"]
+atlas = ExtResource("1_g3pn5")
+region = Rect2(324, 105, 108, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqu24"]
+atlas = ExtResource("1_g3pn5")
+region = Rect2(432, 105, 108, 105)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cwevt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2doog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pid68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2llys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqu24")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Key" type="Area2D" unique_id=758880263]
+script = ExtResource("1_2doog")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1129097247]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_hedmi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1310290665]
+scale = Vector2(0.059895836, 0.059895843)
+sprite_frames = SubResource("SpriteFrames_cwevt")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 1
+frame_progress = 0.17192087
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
