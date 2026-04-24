@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://b744qcq4ly2rh" path="res://gd/skeleton.gd" id="1_sv33q"]
 [ext_resource type="Texture2D" uid="uid://b08jrewao7ryd" path="res://animation/Skeleton/Idle.png" id="2_sv33q"]
 [ext_resource type="Texture2D" uid="uid://bfwmlh3k1lujo" path="res://animation/Skeleton/Walk.png" id="3_uaaco"]
+[ext_resource type="AudioStream" uid="uid://cr52cx1xn6e3r" path="res://sound/442ceb8fe7ae85a.wav" id="5_jbvms"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ymvsc"]
-radius = 9.0
-height = 18.0
+radius = 6.0
+height = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwpf0"]
 atlas = ExtResource("1_r6xse")
@@ -72,9 +73,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ft6oh")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -91,7 +92,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -106,13 +107,22 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gku70")
 }],
-"loop": true,
+"loop": false,
 "name": &"Walk",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6xse"]
-radius = 109.23855
+radius = 128.5533
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhurr"]
+size = Vector2(10.787685, 3.0927777)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbvms"]
+size = Vector2(28.865946, 5.3737106)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7bxq"]
+radius = 5.0990195
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=374835469]
 script = ExtResource("1_sv33q")
@@ -122,8 +132,8 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_ymvsc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1490994137]
-position = Vector2(-0.9999981, -5.722046e-06)
-scale = Vector2(0.485, 0.485)
+position = Vector2(1.0000002, 0)
+scale = Vector2(-0.31680322, 0.27712047)
 sprite_frames = SubResource("SpriteFrames_c6pi8")
 animation = &"Idle"
 autoplay = "Idle"
@@ -131,7 +141,36 @@ autoplay = "Idle"
 [node name="Detector" type="Area2D" parent="AnimatedSprite2D" unique_id=1985679723]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Detector" unique_id=1091808722]
+visible = false
 shape = SubResource("CircleShape2D_r6xse")
+
+[node name="Death" type="Area2D" parent="." unique_id=42512993]
+position = Vector2(-0.9999981, -5.722046e-06)
+scale = Vector2(0.485, 0.485)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death" unique_id=621927576]
+position = Vector2(4.123708, -9.793803)
+scale = Vector2(1.0000012, 1.0000012)
+shape = SubResource("RectangleShape2D_bhurr")
+
+[node name="Death2" type="Area2D" parent="." unique_id=192354312]
+position = Vector2(-0.9999981, -5.722046e-06)
+scale = Vector2(0.485, 0.485)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death2" unique_id=1257877023]
+position = Vector2(2.0618532, 1.1798038e-05)
+scale = Vector2(1.0000014, 1.0000014)
+shape = SubResource("RectangleShape2D_jbvms")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=533560717]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=775480717]
+shape = SubResource("CircleShape2D_d7bxq")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=703162027]
+stream = ExtResource("5_jbvms")
 
 [connection signal="body_entered" from="AnimatedSprite2D/Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/Detector" to="." method="_on_detector_body_exited"]
+[connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]
+[connection signal="body_entered" from="Death2" to="." method="_on_death_2_body_entered"]
