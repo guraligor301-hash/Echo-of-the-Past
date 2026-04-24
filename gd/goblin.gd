@@ -20,10 +20,10 @@ func _physics_process(delta):
 				velocity.x = direction.x * speed
 				velocity.y = direction.y * speed
 				$AnimatedSprite2D.flip_h = direction.x < 0
-				anim.play("Walk")
+				anim.play("run")
 			else:
 				velocity.x = 0
-				anim.play("Idle")
+				anim.play("idle")
 			if direction.x < 0:
 				$AnimatedSprite2D.flip_h = false
 			else:
@@ -57,6 +57,6 @@ func _on_death_2_body_entered(body: Node2D) -> void:
 		
 func death (): 
 	alive = false
-	anim.play ("Death")
+	anim.play ("death")
 	await anim.animation_finished 
 	queue_free() 
